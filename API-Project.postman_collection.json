@@ -1,0 +1,1293 @@
+{
+	"info": {
+		"_postman_id": "b28d1ded-0fda-441f-ab2c-af9e39a558f1",
+		"name": "API-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26915673",
+		"_collection_link": "https://bold-equinox-913669.postman.co/workspace/API-Project~3a026ea2-e082-4dd3-986d-173b51701705/collection/26915673-b28d1ded-0fda-441f-ab2c-af9e39a558f1?action=share&source=collection_link&creator=26915673"
+	},
+	"item": [
+		{
+			"name": "Valid Requests",
+			"item": [
+				{
+					"name": "Get All Messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the request method is GET.\r",
+									"pm.test(\"Successful GET request\", function () \r",
+									"{\r",
+									"    pm.actualMethod = pm.request.method;\r",
+									"    pm.expect(pm.actualMethod).to.eq(\"GET\");\r",
+									"});\r",
+									"\t\t\t\t\t\t\t\r",
+									"// Verify the API Response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () \r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Verify the API Respons is validate and have a body.\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"//Verify the response contains an access token\r",
+									"pm.test(\"Response contains access token\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.access_token).to.be.undefined;\r",
+									"});\r",
+									"\r",
+									"//Verify Message Structure\r",
+									"pm.test(\"Messages have expected properties\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.messages[0]).to.have.property(\"id\");\r",
+									"    pm.expect(jsonData.messages[1]).to.have.property(\"threadId\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Message By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the request method is GET.\r",
+									"pm.test(\"Successful GET request\", function () \r",
+									"{\r",
+									"    pm.actualMethod = pm.request.method;\r",
+									"    pm.expect(pm.actualMethod).to.eq(\"GET\");\r",
+									"});\r",
+									"\t\t\t\t\t\t\t\r",
+									"// Verify the API Response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () \r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Verify the API Respons is validate and have a body.\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"});\r",
+									"\r",
+									"//Verify Message Properties\r",
+									"pm.test(\"Message has expected properties\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"    pm.expect(jsonData).to.have.property(\"threadId\");\r",
+									"    pm.expect(jsonData).to.have.property(\"labelIds\").that.is.an(\"array\");\r",
+									"    pm.expect(jsonData).to.have.property(\"snippet\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/18bba301e344696b",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"18bba301e344696b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the request method is POST.\r",
+									"pm.test(\"Successful POST request\", function () \r",
+									"{\r",
+									"    pm.actualMethod = pm.request.method;\r",
+									"    pm.expect(pm.actualMethod).to.eq(\"POST\");\r",
+									"});\r",
+									"\t\t\t\t\t\t\t\r",
+									"// Verify the API Response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () \r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"//Verify the Email is sent successfully\r",
+									"pm.test(\"Response contains 'SENT' in labelIds\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.labelIds).to.include(\"SENT\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"raw\" : \"RnJvbTogbTdtb2QuM3JhZmFAZ21haWwuY29tClRvOiBBYmRlbHJhaG1hbkFyYWZhT3NtYW5AZ21haWwuY29tClN1YmplY3Q6IFNheWluZyBIZWxsbwoKVGhpcyBpcyBhIG1lc3NhZ2UganVzdCB0byBzYXkgaGVsbG8uClNvLCAiSGVsbG8iLg==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/send",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move to Trash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the request method is POST.\r",
+									"pm.test(\"Successful POST request\", function () \r",
+									"{\r",
+									"    pm.actualMethod = pm.request.method;\r",
+									"    pm.expect(pm.actualMethod).to.eq(\"POST\");\r",
+									"});\r",
+									"\t\t\t\t\t\t\t\r",
+									"// Verify the API Response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () \r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Verify Message is Moved to Trash\r",
+									"pm.test(\"Email is moved to trash\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.labelIds).to.include(\"TRASH\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/18bba301e344696b/trash",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"18bba301e344696b",
+								"trash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Untrash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the request method is POST.\r",
+									"pm.test(\"Successful POST request\", function () \r",
+									"{\r",
+									"    pm.actualMethod = pm.request.method;\r",
+									"    pm.expect(pm.actualMethod).to.eq(\"POST\");\r",
+									"});\r",
+									"\t\t\t\t\t\t\t\r",
+									"// Verify the API Response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () \r",
+									"{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/18bba301e344696b/untrash",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"18bba301e344696b",
+								"untrash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the request method is DELETE.\r",
+									"pm.test(\"Successful DELETE request\", function () \r",
+									"{\r",
+									"    pm.actualMethod = pm.request.method;\r",
+									"    pm.expect(pm.actualMethod).to.eq(\"DELETE\");\r",
+									"});\r",
+									"\r",
+									"//Verify Status Code\r",
+									"pm.test(\"Status code is 204\", function() {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"//Verify Message is Deleted\r",
+									"pm.test(\"Email is deleted\", function() {\r",
+									"    // Response body should be empty for a successful deletion\r",
+									"    pm.expect(pm.response.text()).to.be.empty;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/18bba301e344696b",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"18bba301e344696b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invalid Requests",
+			"item": [
+				{
+					"name": "Get All Messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Missing or Invalid Access Token\r",
+									"pm.test(\"Unauthorized Access: Missing or Invalid Token\", function() {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"//Empty or Malformed Request Body\r",
+									"pm.test(\"Bad Request: Empty or Malformed Request Body\", function() {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Message By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Retrieving Email with Invalid Message ID\r",
+									"pm.test(\"Not Found: Email Not Found\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/123",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Empty or Malformed Request Body\r",
+									"pm.test(\"Bad Request: Empty or Malformed Request Body\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/send",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move to Trash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Retrieving Email with Invalid Message ID\r",
+									"pm.test(\"Not Found: Email Not Found\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/18/trash",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"18",
+								"trash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Untrash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Retrieving Email with Invalid Message ID\r",
+									"pm.test(\"Not Found: Email Not Found\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/1/untrash",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"1",
+								"untrash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Delete Email with Invalid ID\r",
+									"pm.test(\"Not Found: Email Not Found\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.google.com/o/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "https://mail.google.com/",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [],
+									"type": "any"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://oauth.pstmn.io/v1/callback",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "472934829620-qvjtludh9ih1elbjnsr7gmg1eu33dr9e.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "API-Project",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ya29.a0AfB_byByOBMsRYCe5jUKmCOkzTnCAoOOKzhkjfdWLgpEtfl95hwvoJgwW_6t1uUSTYnn8VuTkcPTOdGzC35wZ12fU57ynmLmdDwArXxltH96ccdRsBNXVGvH8FOZfQyjwwF_s2Cm1Vmyx8xuxCQlhczoWPOgVXzofRkaCgYKAQoSARMSFQHGX2MikX8ogu2ak6KcLbG56eMz5w0170",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://gmail.googleapis.com/gmail/v1/users/{{userId}}/messages/18bb",
+							"protocol": "https",
+							"host": [
+								"gmail",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"gmail",
+								"v1",
+								"users",
+								"{{userId}}",
+								"messages",
+								"18bb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
